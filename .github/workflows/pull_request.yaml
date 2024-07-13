@@ -1,5 +1,7 @@
 name: pull_request-workflow # 시각화 이름
-on: pull_request
+on: 
+  pull_request:
+    types: [opened] # PR이 열리거나 업데이트 될 때만 실행
 
 jobs:
   pull_request-job:
