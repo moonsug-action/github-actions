@@ -3,8 +3,8 @@ on: issue_comment
 
 jobs:
   pr-comment:
-    if: ${{ github.event.issue.pull_request }} # PR에 대한 코멘트만 실행 
-    runs-on: ubuntu-latest
+    if: ${{ github.event.issue.pull_request }} # PR에 대한 코멘트만 실행
+    runs-on: ubuntu-latest   
     steps:
       - name: pr comment
         run: echo "Hello, ${{ github.actor }}. You commented on a PR."
