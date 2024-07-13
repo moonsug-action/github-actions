@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest # 실행 환경
     steps:
       - name: step1
-        run: echo "Hello, ${{ github.actor }}"
+        run: echo "Hello, ${{ github.actor }} 111"
       - name: step2 
         run: |
           echo "Hello, ${{ github.actor }}"
