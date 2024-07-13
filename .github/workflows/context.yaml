@@ -1,0 +1,9 @@
+name: context
+on: workflow_dispatch
+
+job:
+  context:
+    runs-on: ubuntu-latest
+    steps:
+      - name: check context
+        run: echo "Hello, ${{ toJson(github) }}" # github context를 JSON 형태로 출력
