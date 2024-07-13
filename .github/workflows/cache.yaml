@@ -1,0 +1,32 @@
+name: cache
+on:
+  push:
+    paths:
+    - 'my-app/**' # my-app 디렉토리 내부의 파일 변경 시
+
+jobs:
+  cache:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4 # 코드 체크아웃
+    - name: setup-node
+      uses: actions/setup-node@v3 # Node.js 버전 설정
+      with:
+        node-version: 18
+    - name: Cache node modules
+      uses: actions/cache@v3 # 캐시 설정
+      with:
+        path: ~/.npm # 캐시 경로
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }} # 캐시 키
+        restore-keys: | 
+          ${{ runner.os }}-node- # 캐시 키 복원
+    - name: Install dependencies
+      run: |
+        cd my-app
+        npm ci
+    - name: npm Build
+      run: |
+        cd my-app
+        npm run build
+      
