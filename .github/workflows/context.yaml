@@ -7,3 +7,8 @@ jobs:
     steps:
       - name: check context
         run: echo "Hello, ${{ toJson(github) }}" # github context를 JSON 형태로 출력
+    steps:
+      - name: check github context
+        run: |
+          echo "Hello, ${{ github.actor }}"
+          echo "Hello, ${{ github.event_name }}"
