@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - '.github/workflows/part1/*'
+      - '!.github/workflows/part1/push.yaml' # 제외할 파일
 
 jobs:
   path-filter-job:
