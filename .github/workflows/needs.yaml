@@ -1,14 +1,5 @@
-name:needs
-on:
-  pull_request:
-    types: [opened]
-  issues:
-    types: [opened, closed]
-  issue_comment:
-    types: [created]
-  push:
-    branches:
-      - dev
+name: needs
+on: push
 
 
 jobs:
