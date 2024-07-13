@@ -10,4 +10,4 @@ jobs:
       - name: step2 
         run: |
           echo "Hello, ${{ github.actor }}"
-          echo "Hello, ${{ github.repository }}"
+          echo "Hello, ${{ github.repository }} 222"
