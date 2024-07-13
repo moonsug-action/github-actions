@@ -1,0 +1,42 @@
+name:needs
+on:
+  pull_request:
+    types: [opened]
+  issues:
+    types: [opened, closed]
+  issue_comment:
+    types: [created]
+  push:
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo flow
+        run: |
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, job1"}' https://hooks.slack.com/services/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
+
+  job2:
+    needs: [job1] # job1이 성공하면 job2 실행
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo flow
+        run: |
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, job2"}' https://hooks.slack.com/services/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
+
+  # fail job3
+  job3:
+    runs-on: ubuntu-latest
+    steps:
+      - name: fail job3
+        run: |
+          echo "Hello, job3"
+          exit 1  
+  # job4 needs job3
+  job4:
+    needs: [job3] # job3이 실패하면 job4 실행
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo flow
+        run: |
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, job4"}' https://hooks.slack.com/services/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
