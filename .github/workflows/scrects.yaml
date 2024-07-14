@@ -1,0 +1,9 @@
+name: scrects
+on: push
+
+jobs:
+  get-scrects:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo scrects
+        run: echo "screct=${{ secrets.LEVEL }}"
