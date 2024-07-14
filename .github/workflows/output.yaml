@@ -3,7 +3,7 @@ on: push
 
 jobs:
   create-output:
-    runs-on: ubunto-latest
+    runs-on: ubuntu-latest
     outputs: # job level output
       tset: ${{ steps.check-out.outputs.test }}
     steps:
