@@ -15,4 +15,4 @@ jobs:
       - name: echo env
         run: |
           echo "env=${{ vars.level }}"
-          echo "env=${{ scrects.key }}"
+          echo "env=${{ secrets.key }}"
