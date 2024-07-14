@@ -26,6 +26,7 @@ jobs:
         run: |
           echo ${{ secrets.PERSONAL_ACCESS_TOKEN }} | gh auth login --with-token
       - name: create repo
+        id: create-repo
         run: |
           gh repo create moonsug-action/${{ inputs.prefix }}-${{ inputs.name }} --public
       - name: slack
@@ -34,6 +35,21 @@ jobs:
         uses: slackapi/slack-github-action@v1.26.0
         with:
           payload: |
-            {"text":"Hello, World!"}
+            {
+              "attachments": [
+                {
+                  "pretext": "create repo result",
+                  "color": "28a745",
+                  "fields": [
+                    {
+                      "title": "create repo result ${{ steps.create-repo.outcome }}",
+                      "short": true,
+                      "value": "${{ inputs.prefix }}-${{ inputs.name }}"
+                    }
+                  ]
+                }
+              ]
+            }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
