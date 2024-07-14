@@ -1,0 +1,25 @@
+name: output
+on: push
+
+jobs:
+  create-output:
+    runs-on: ubunto-latest
+    outputs: # job level output
+      tset: ${{ steps.check-out.outputs.test }}
+    steps:
+      - name: echo output
+        id: check-output # unique
+        run: |  
+          echo "test=hello" >> "$GITHUB_OUTPUT"
+      - name: check output
+        run: |
+          echo ${{ steps.check-output.outputs.test }}
+          
+  get-output:
+    needs: [create-output]
+    runs-on: ubuntu-latest
+    steps:
+      - name: get output
+        run: |
+          echo ${{ needs.create-output.outputs.test }}
+         # 다른 job에 있는 걸 사용하려면 needs로 의존하고 needs 키워드를 통해 접근합니다.
