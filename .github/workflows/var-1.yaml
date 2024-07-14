@@ -24,10 +24,10 @@ jobs:
     env:
       level: job
     steps:
-      env:
-        level: step
       - name: echo env
         run: echo "level=${{ env.level }}"
+        env:
+          level: step
 
   get-env-4:
     runs-on: ubuntu-latest
