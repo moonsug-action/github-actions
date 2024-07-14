@@ -9,10 +9,10 @@ jobs:
         run: echo "screct=${{ secrets.LEVEL }}"
 
   get-env-dev:
-  runs-on: ubuntu-latest
-  environment: dev
-  steps:
-    - name: echo env
-      run: |
-        echo "env=${{ vars.level }}"
-        echo "env=${{ scrects.key }}"
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - name: echo env
+        run: |
+          echo "env=${{ vars.level }}"
+          echo "env=${{ scrects.key }}"
