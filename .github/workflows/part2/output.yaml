@@ -5,7 +5,7 @@ jobs:
   create-output:
     runs-on: ubuntu-latest
     outputs: # job level output
-      tset: ${{ steps.check-out.outputs.test }}
+      test: ${{ steps.check-out.outputs.test }}
     steps:
       - name: echo output
         id: check-output # unique
@@ -23,3 +23,4 @@ jobs:
         run: |
           echo ${{ needs.create-output.outputs.test }}
          # 다른 job에 있는 걸 사용하려면 needs로 의존하고 needs 키워드를 통해 접근합니다.
+         # 다른 job에서 사용하려면 job level output인 outputs를 사용합니다.
