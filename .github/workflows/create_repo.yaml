@@ -27,4 +27,4 @@ jobs:
           echo ${{ secrets.PERSONAL_ACCESS_TOKEN }} | gh auth login --with-token
       - name: create repo
         run: |
-          gh repo create moonsug-action/${{ inputs.prefix }}-{{ inputs.name }} --public
+          gh repo create moonsug-action/${{ inputs.prefix }}-${{ inputs.name }} --public
