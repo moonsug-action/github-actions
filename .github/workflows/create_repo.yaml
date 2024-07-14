@@ -1,0 +1,30 @@
+name: create-app
+on:
+  workflow_dispatch:
+    inputs:
+      prefix:
+        description: 'set repo prefix'
+        required: true
+        default: 'feature'
+        type: choice
+        options:
+          - 'feature'
+          - 'fix'
+          - 'hotfix'
+          - 'release'
+      name:
+        description: 'set repo name'
+        required: true
+        default: 'new-app'
+        type: string
+
+jobs:
+  create-repo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: gh auth login
+        run: |
+          echo ${{ secrets.PERSONAL_ACCESS_TOKEN }} | gh auth login --with-token
+      - name: create repo
+        run: |
+          gh repo create moonsug-action/${{ inputs.prefix }}/#${{ inputs.name }} --public
