@@ -20,7 +20,7 @@ jobs:
       - name: get event name
         run: |
           echo ${{ github.event_name }}
-  job1:
+  job3:
     runs-on: ubuntu-latest
     steps:
       - name: get event name if push
